@@ -41,16 +41,18 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach($products as $p) { ?>
+        <?php foreach($products as $i => $p) { ?>
             <tr>
-            <th scope="row"><?php echo $p['id'] ?></th>
-            <td><?php echo $p['image']??'No Image' ?></td>
+            <th scope="row"><?php echo $i+1 ?></th>
+            <td>
+                <img src="<?php echo $p['image']; ?>" class="thumb-image">
+            </td>
             <td><?php echo $p['title'] ?></td>
             <td><?php echo $p['price'] ?></td>
             <td><?php echo $p['create_date'] ?></td>
             <td>
                 <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                <button type="button" class="btn btn-sm btn-outline-danger">Delete</button>
+                <a type="button" class="btn btn-sm btn-outline-danger">Delete</a>
             </td>
             </tr>
         <?php } ?>
