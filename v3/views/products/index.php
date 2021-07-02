@@ -26,8 +26,8 @@
         <td><?php echo $p['price'] ?></td>
         <td><?php echo $p['create_date'] ?></td>
         <td>
-            <a href="update.php?id=<?php echo $p['id']; ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
-            <form style="display: inline;" method="post" action="delete.php">
+            <a href="/products/update?id=<?php echo $p['id']; ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
+            <form style="display: inline;" method="post" action="/products/delete">
                 <input type="hidden" name="id" value="<?php echo $p['id']; ?>">
                 <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
             </form>
