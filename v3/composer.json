@@ -1,16 +1,15 @@
 {
     "name": "sagar/v3",
-    "autoload": {
-        "psr-4": {
-            "Sagar\\V3\\": "src/",
-            "app\\": "./"
-        }
-    },
     "authors": [
         {
             "name": "Sagar Jolly",
             "email": "sagarjolly11@gmail.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    }
 }

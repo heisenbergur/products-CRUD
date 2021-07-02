@@ -7,5 +7,4 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'app\\' => array($baseDir . '/'),
-    'Sagar\\V3\\' => array($baseDir . '/src'),
 );

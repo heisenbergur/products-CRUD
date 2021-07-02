@@ -2,35 +2,52 @@
 
 namespace app;
 
-class Router {
+class Router 
+{
     public array $getRoutes = [];
     public array $postRoutes = [];
+    public Database $db;
 
-    public function post($url, $fn) {
+    public function __construct()
+    {
+        $this->db = new Database();
+    }
+
+    public function get($url, $fn)
+    {
         $this->getRoutes[$url] = $fn;
     }
 
-    public function get($url, $fn) {
+    public function post($url, $fn)
+    {
         $this->postRoutes[$url] = $fn;
     }
 
     public function resolve() {
-        // echo '<pre>';
-        // var_dump($_SERVER);
-        // echo '</pre>';
-        $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
+        $currentUrl = $_SERVER['PATH_INFO'] ?? "/";
         $method = $_SERVER['REQUEST_METHOD'];
-        if($method === 'GET') {
+        if($method === "GET") {
             $fn = $this->getRoutes[$currentUrl] ?? null;
         } else {
             $fn = $this->postRoutes[$currentUrl] ?? null;
         }
         if($fn) {
-            echo '<pre>';
-            var_dump($fn);
-            echo '</pre>';
+            $controller = new $fn[0];
+            call_user_func(array($controller, $fn[1]), $this);
         } else {
             echo 'Page not found';
         }
     }
+
+    public function renderView($view, $params = [])
+    {
+        foreach($params as $key => $value) {
+            $$key = $value;
+        }
+        ob_start();
+        include_once __DIR__."/views/$view.php";
+        $content = ob_get_clean();
+        include_once __DIR__."/views/layout.php";
+    }
 }
+
